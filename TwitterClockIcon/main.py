@@ -17,10 +17,11 @@ def main():
     date = datetime.datetime.now(tz = timezone)
 
     # 夜は眠っているアイコン
+    save_path = "/tmp/rotated.png"
     fillcolor = (115, 174, 232)
     if 21 <= date.hour < 24 or 0 <= date.hour < 7:
-        time_rotate_image("img/night.png", timezone, fillcolor = fillcolor)
+        time_rotate_image("img/night.png", save_path, timezone, fillcolor = fillcolor)
     else:
-        time_rotate_image("img/normal.png", timezone, fillcolor = fillcolor)
+        time_rotate_image("img/normal.png", save_path, timezone, fillcolor = fillcolor)
 
-    api.update_profile_icon("img/rotated.png")
+    api.update_profile_icon(save_path)

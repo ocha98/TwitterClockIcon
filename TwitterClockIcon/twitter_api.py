@@ -17,7 +17,4 @@ class UpdateProfileIcon:
         self.api = tweepy.API(auth)
 
     def update_profile_icon(self, img_path):
-        try:
-            self.api.update_profile_image(img_path)
-        except Exception as e:
-            print(e)
+        self.api.update_profile_image(img_path)
