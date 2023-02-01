@@ -19,8 +19,8 @@ def main():
     # 夜は眠っているアイコン
     fillcolor = (115, 174, 232)
     if 21 <= date.hour < 24 or 0 <= date.hour < 7:
-        time_rotate_image("img/night.png", fillcolor = fillcolor)
+        time_rotate_image("img/night.png", timezone, fillcolor = fillcolor)
     else:
-        time_rotate_image("img/normal.png", fillcolor = fillcolor)
+        time_rotate_image("img/normal.png", timezone, fillcolor = fillcolor)
 
     api.update_profile_icon("img/rotated.png")
