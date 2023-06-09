@@ -25,3 +25,5 @@ def main():
         time_rotate_image("img/normal.png", save_path, timezone, fillcolor = fillcolor)
 
     api.update_profile_icon(save_path)
+
+    os.remove(save_path)
