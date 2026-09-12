@@ -11,6 +11,7 @@ API_KEY = os.environ['API_KEY']
 API_KEY_SECRET = os.environ['API_KEY_SECRET']
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 ACCESS_TOKEN_SECRET = os.environ['ACCESS_TOKEN_SECRET']
+INTERVAL_HOURS = int(os.environ["RUN_INTERVAL_HOURS"])
 
 def time_rotate_image(img_path,
                       save_path,
@@ -31,6 +32,20 @@ def time_rotate_image(img_path,
 def main():
     timezone = datetime.timezone(datetime.timedelta(hours = 9))
     date = datetime.datetime.now(tz = timezone)
+
+    anchor = datetime.datetime(2026, 1, 1, 0, 0, 0, tzinfo = timezone)
+
+    hours = int((date - anchor).total_seconds() // 3600)
+
+    if hours % INTERVAL_HOURS != 0:
+        print(
+            f"Not time to run. "
+            f"Current hour: {date.hour}, "
+            f"anchor hour: {anchor.hour}, "
+            f"hours since anchor: {hours}, "
+            f"interval: {INTERVAL_HOURS}"
+        )
+        return
 
     # 夜は眠っているアイコン
     save_path = "/tmp/rotated.png"
